@@ -51,3 +51,29 @@ class Solution {
         return sum;
     }
 }
+
+//very fast and low memory usage
+class Solution {
+    int sum = 0;
+    int l,r;
+    public void recursion(TreeNode root) {
+        if (root.val <= r && root.val >= l) {
+            sum = sum + root.val;
+            if (root.left!=null) {
+                recursion(root.left);
+            }
+            if (root.right!=null) {
+                recursion(root.right);
+            }
+        } else if (root.left!=null && root.val > r) {
+            recursion(root.left);
+        } else if (root.right!=null && root.val < l) {
+            recursion(root.right);
+        }
+    }
+    public int rangeSumBST(TreeNode root, int L, int R) {
+        l=L;r=R;
+        recursion(root);
+        return sum;
+    }
+}
